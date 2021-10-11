@@ -1,0 +1,185 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Kimbo77.xyz :: Freelance tech and pop-culture writer</title>
+  <meta name="description" content="A portfolio website with several sample articles.">
+  <meta name="author" content="Jamie Smith">
+
+  <meta property="og:title" content="A Portfolio website with several sample articles">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.kimbo77.xyz/">
+  <meta property="og:description" content="A portfolio websites with several sample articles.">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+	
+<div class="maincontainer">
+
+	<p><h1>Setting Up a Windows XP Virtual Machine Using Ubuntu</h1></p>
+
+	<p>It’s probably fair to say that Windows XP was Microsoft’s most beloved OS. Today, we'll walk through the setup of a virtual XP installation on Ubuntu, step-by-step.</p>
+
+	<p>In fact, once you’ve managed to procure a working XP installation disc image and serial key, the whole process can be completed in around 30 minutes on most machines produced in the last decade (although it might take you a little longer on the first run through). Likewise, any PC with a dual-core processor should be able to run a virtualized XP environment well enough to complete non-gaming tasks with ease.</p>
+
+	<h3>What You Will Need</h3>
+
+	<p>Before we get started, you should ensure that you’ve prepared the following:</p>
+	<ul>
+		<li><b>A recent Ubuntu installation</b> I’m running 21.04</li>
+		<li><b>A Windows XP Installation ISO</b> I won’t include any direct links, but iso files can be found on countless websites these days. Or, if you prefer, you can <a href="https://help.ubuntu.com/community/CreateIsoFromCDorDVD">create an ISO using a legit CD</a>.</li>
+		<li><b>A Windows XP Serial Key</b> These can be legally obtained from a number of sources.</li>
+	</ul>
+
+	<p>Likewise, you will probably also want to ensure that you’ve got at least 10GB free for your virtual machine.</p>
+
+	<h3>Installing Virtualbox</h3>
+
+	<p>The process of installing Virtualbox is actually very straightforward, and requires no additional repositories beyond those offered by a standard Ubuntu installation.</p>
+
+	<p>From the terminal, you can execute the following command:</p>
+
+	<span class="codeblock">sudo apt-get install virtualbox -y</span>
+
+	<div class="noteblock">
+	<p><b>Note:</b> You might be wondering what the “-y” flag is used for at the end of this command. Essentially, it automatically pipes an answer of “yes” to the “Do you want to continue?” prompt which is displayed whenever you attempt to install packages from the terminal. Essentially, it just makes installing from the command-line fractionally simpler and quicker.</p>
+	</div>
+
+	<p></p>Once installed, you can launch the application from the terminal by typing “virtualbox”, or you can use whichever application launcher your system is equipped with.</p>
+
+	<h3>Setting Up Your New Virtual Machine</h3>
+
+	<p>Once booted, you’ll be presented with the standard “Oracle VM Virtualbox Manager” screen. From there, you can click “New”.</p>
+
+	<img class="ctralign" src="../images/xp_vm/001.png">
+
+	<p>In the “Name and operating system” screen, you can enter the following details:</p>
+
+	<ul>
+		<li><b>Name (1)</b> This can be anything you like. Typically, I’ll just use “XP” or “XP Machine”</li>
+		<li><b>Machine Folder (2)</b> It’s important to ensure that your machine is stored on a drive that will be able to accommodate your machine, especially if it’s likely to dramatically grow in size.</li>
+		<li><b>Type (3)</b> Should be set to “Microsoft Windows”</li>
+		<li><b>Version (4)</b> For this field, you can select either “Windows XP (32-bit)” or “Windows XP (64-bit)”. You should select the 32-bit installation unless you specifically require 64-bit support.</li>
+	</ul>
+
+	<img class="ctralign" src="../images/xp_vm/002.png">
+
+	<p>Click <b>“Next”(5)</b>, and select the amount of memory you’d like to allocate to your machine. As we won’t be gaming, I usually find that one gigabyte is more than adequate, but feel free to adjust this if you expect to be doing any ram-intensive work (for example, if you intend to set up an audio or video workstation under a virtualized XP environment).</p>
+
+	<img class="ctralign" src="../images/xp_vm/003.png">
+
+	<p>Click “Next” again, and you should now see the “Hard disk” screen. If it’s not already selected, go ahead and click the radio button next to “Create a virtual hard disk now” (1), followed by “Create” (2).</p>
+
+	<img class="ctralign" src="../images/xp_vm/004.png">
+
+	<p>Under “Hard disk file type”, select “VDI (VirtualBox Disk Image)”, then click “Next” again.</p>
+
+	<img class="ctralign" src="../images/xp_vm/005.png">
+
+	<p>At this point, you’ll have the option to choose between a “Dynamically allocated” or “Fixed size” disk image.</p>
+
+	<img class="ctralign" src="../images/xp_vm/006.png">
+
+	<p>The beauty of dynamic allocation is that the disk image size will only expand to accommodate what the virtual machine is actually using; on the other hand, a fixed size image will take up the maximum amount of space you set (in the next screen) on your hard drive. I always use dynamic allocation when setting up virtualized OS installations, and have never encountered any issues with it.</p>
+
+	<p>Click “Next” once again, and you should see the “File location and size” section. This screen allows you to set the location of your VirtualBox Disk Image, as well as the maximum size limit (or, if you selected “Fixed Size” for your disk image, the initial amount of space which will be occupied on your computer).</p>
+
+	<img class="ctralign" src="../images/xp_vm/007.png">
+
+	<p>The size should automatically be set to 10.00 GB, and I tend to stick with this for anything prior to Windows 10. </p>
+
+	<p>You can now click “Create”.</p>
+
+	<h3>Installing Windows XP</h3>
+
+	<p>Now that the virtual machine has been created, you can begin the process of installing Windows XP to it.</p>
+
+	<p>First, right-click the name of the virtual machine (1), then click on “Settings” (2).</p>
+
+	<img class="ctralign" src="../images/xp_vm/008.png">
+
+	<p>Once the settings menu opens up, click the “Storage” heading, then select the “Empty” optical drive entry. You should now see a CD drive icon (3) which, when clicked, will allow you to “Choose a disk file” (4).</p>
+
+	<img class="ctralign" src="../images/xp_vm/009.png">
+
+	<p>Select the appropriate XP iso file to boot from, then click “Ok”.</p>
+
+	<p>Now, you can click “Start” to begin booting your XP machine.</p>
+
+	<img class="ctralign" src="../images/xp_vm/024.png">
+
+	<p>After 10-15 seconds, you should see the below screen. Hit the Enter key to continue.</p>
+
+	<img class="ctralign" src="../images/xp_vm/010.png">
+
+	<p>Read through the terms and conditions (if you’re into that kind of thing), and then hit F8.</p>
+
+	<img class="ctralign" src="../images/xp_vm/011.png">
+
+	<p>Next, begin the process of formatting your hard drive. You can do this by hitting the Enter key.</p>
+
+	<img class="ctralign" src="../images/xp_vm/012.png">
+
+	<p>On the following screen, you can select the method you’d like to use to format your virtual disk image. I'll generally opt for the “FAT File System (Quick)” option, but feel free to experiment; assuming your virtual disk image is less than 32GB, you’re unlikely to notice much of a difference.</p>
+
+	<p>If you do select the FAT option, you’ll receive another warning screen; you can get past this by hitting Enter.</p>
+
+	<img class="ctralign" src="../images/xp_vm/013.png">
+
+	<p>Once setup has finished copying files, you’ll then see the more-friendly looking Windows XP setup process begin.</p>
+
+	<img class="ctralign" src="../images/xp_vm/014.png">
+
+	<p>When prompted, you can feel free to go into the options and tinker your installation to suit your needs; generally speaking, you’ll only really need to change the localization options at this stage, but you can go wild if you like; very little can go wrong here, and the worst case scenario would be that you’d need to begin the setup process from the beginning.</p>
+
+	<p>You’ll also need to enter your legally obtained serial key.</p>
+
+	<img class="ctralign" src="../images/xp_vm/015.png">
+
+	<p>You can continue progressing through the setup process by clicking “Next” and, eventually, you’ll see the Network Settings screen. If you want to connect to the internet without any configuration, you should stick with “Typical settings” and click “Next”.</p>
+
+	<img class="ctralign" src="../images/xp_vm/016.png">
+
+	<p>When asked about your workgroup, feel free to enter whatever you like. I always just leave it set to “WORKGROUP”. Click “Next” again, and the process will take some time to copy files before the next prompt.</p>
+
+	<img class="ctralign" src="../images/xp_vm/017.png">
+
+	<p>Then, after a minute or so, the machine will restart. You'll see a prompt to 'Press a key' to boot from CD. <b>Do not</b> press anything here! Just wait, and the next screen you should see is the dialog box alerting you to the improvement of visual elements. Go ahead and click “Ok” here.</p>
+
+	<img class="ctralign" src="../images/xp_vm/018.png">
+
+	<p>And, assuming you can read the next dialog box, you can click “Ok” here as well.</p>
+
+	<img class="ctralign" src="../images/xp_vm/019.png">
+
+	<p>Not long to go now! When the “Welcome to Microsoft Windows” screen appears, you can click “Next”. </p>
+
+	<img class="ctralign" src="../images/xp_vm/020.png">
+
+	<p>When asked whether or not you’d like for this machine to be protected, either option is fine. It’s worth noting that – if you intend to use this virtual machine to connect to the internet – you’re probably going to be pretty vulnerable to malware no matter how many preventative steps you take. For that reason, it’s important not to use an obsolete OS like this for storing critical or private information, even if your host OS (Ubuntu, in our case) has adequate security protection.</p>
+
+	<img class="ctralign" src="../images/xp_vm/021.png">
+
+	<p>I tend to skip any screens relating to the setup of internet functionality as – if I am connecting to the internet using XP – I tend to just use the default bridged network configuration (XP will essentially treat this like a fully-working ethernet connection, with no tinkering required on your part!).</p>
+
+	<p>Now, go ahead and enter your name (1), then click “Next” (2) again.</p>
+
+	<img class="ctralign" src="../images/xp_vm/022.png">
+
+	<p>After that, the setup process is complete! You can now click “Finish” to begin using your new… er, old operating system. Don’t go logging into your bank account with this bad boy! In fact, the best place to start with an old setup like this is probably <a href="http://www.theoldnet.com">TheOldNet</a>.</p>
+
+	<img class="ctralign" src="../images/xp_vm/023.png">
+
+</div>
+
+</body>
+</html>

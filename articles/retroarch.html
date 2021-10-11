@@ -1,0 +1,163 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Kimbo77.xyz :: Freelance tech and pop-culture writer</title>
+  <meta name="description" content="A portfolio website with several sample articles.">
+  <meta name="author" content="Jamie Smith">
+
+  <meta property="og:title" content="A Portfolio website with several sample articles">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.kimbo77.xyz/">
+  <meta property="og:description" content="A portfolio websites with several sample articles.">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+	
+<div class="maincontainer">
+
+	<h1>How to Set Up Retroarch Using Ubuntu</h1>
+
+	<p>Retroarch is a fantastic way to enjoy the video games of your youth.  Today, I’ll show you how to get it up and running on Ubuntu. And &#8212; if you’re comfortable using the terminal &#8212; setup should take less than sixty minutes.</p>
+
+	<p>While it’s entirely possible to emulate your old games without a unifying front-end, it tends to become increasingly cumbersome as your library grows. With some emulators relying on their own graphical interfaces (PCSX-Rearmed, for instance), and others expecting users to launch roms using the command line (such as the barebones Mednafen installation), opting for a consistent interface soon becomes a no-brainer.</p>
+
+	<h3>What You’ll Need</h3>
+
+	<p>Before we get started, you’ll need to prepare the following:</p>
+	<ul>
+		<li><b>A PC running Ubuntu</b> Because Retroarch does such a fantastic job of supporting ageing systems, it’s hard to tell exactly how far back their Ubuntu support stretches. It’s probably a safe bet to assume that anything from 18.04 (which was released in 2018) onwards will run fine, but there’s a good chance significantly older versions could also work with enough tinkering.</li>
+		<li><b>Some legally obtained roms or disc images</b> You can find free, public-domain roms for a variety of systems online. A good place to start would be Zophar’s Domain. Alternatively, you could try producing your own ISO files using Ubuntu. <a href="https://www.maketecheasier.com/guide-to-playstation-emulator-on-ubuntu/">This MakeTechEasier guide</a> has a small section covering ISO file production using the dd command.</li>
+		<li><b>Some legally obtained BIOS files</b> You’ll possibly require a BIOS file for certain systems you’re wishing to emulate. Dumping one from an original system can be an involved process, but there are a number of guides available on the internet which will make your life a lot easier. If you're not sure, do some googling.</li>
+	</ul>
+	<p>And that’s it! We can now get on with the actual installation process.</p>
+
+	<h3>Installing Retroarch</h3>
+
+	<p>There are actually a number of ways you can get Retroarch installed. The team provides packages in Flatpak, Appimage, and Snapcraft formats, as well as a version which is available via Steam.</p>
+
+	<p>In this guide, I’m going to stick with the method which has always worked best for me: installing via the official libretro repositories. The below command (taken from the <a href="https://retroarch.com/index.php?page=linux-instructions">Linux instructions page on the official Libretro website</a>) will take care of adding the necessary repository, updating your package lists, and installing the software itself:</p>
+
+	<span class="codeblock">sudo add-apt-repository ppa:libretro/stable && sudo apt-get update && sudo apt-get install retroarch</span>
+
+	<p>Alternatively, you can use the below – slightly amended – command to skip those pesky “Do you want to continue? [Y/N]” prompts:</p>
+
+	<span class="codeblock">sudo add-apt-repository ppa:libretro/stable && sudo apt-get update -y && sudo apt-get install retroarch -y</span>
+
+	<h3>Configuring Retroarch</h3>
+
+	<p>Once the whole process is complete, you can launch Retroarch from the terminal by typing "retroarch". Alternatively, find it in your system's default application launcher. You should then see something like the following:</p>
+
+	<img class="ctralign" src="../images/retroarch/001.png">
+
+	<p>Right now, all we have is a minimal installation, and we'll need to complete a few further steps before it can actually be used.  From the Main Menu, click "Online Updater" (1). In Retroarch, you can select items using the d-pad and the “ok” button (this will be the B button on an XBox controller, or the circle button on a Playstation controller).</p>
+
+	<p>On the next screen, select the following options: "Update Core Info Files" (1), "Update Assets" (2), "Update Controller Profiles" (3), "Update Databases" (4), "Update Overlays" (5), and "Update GLSL Shaders" (6).</p>
+
+	<img class="ctralign" src="../images/retroarch/005.png">
+
+	<p>Optionally, you can also select "Update Cheats" if you’d like to have access to a library of cheats during gameplay. Likewise, you can set "On-Demand Thumbnail Downloads" to “On” if you’d like the system to attempt to automatically provide thumbnails for your games; however, this option can impact your system’s performance.</p>
+
+	<p>Let’s look at the items we just selected:</p>
+	<ul>
+		<li><b>Update Core Info Files</b> According to the libretro team, this item is used for “displaying a pretty name in the Load Core screen and also for being able to select it from the filebrowser.”</li>
+		<li><b>Update Assets</b> The assets are mainly used for aesthetic purposes. Once they’re downloaded, you should see Retroarch immediately switch to a much more visually-pleasing theme.</li>
+		<li><b>Update Controller Profiles</b> If you intend to use any kind of gamepad, these configuration files should let you use whichever compatible devices you have without issue. I have a number of third-party Xbox 360 controllers which all work fine using these profiles.</li>
+		<li><b>Update Databases</b> By updating the databases, your system will be better-equipped to identify roms in your library.</li>
+		<li><b>Update Overlays</b> These decorations can be used when emulating older games to occupy the space caused by 16:9 resolutions. They can be used in combination with the shaders to produce some very nice presentations.</li>
+		<li><b>Update GLSL Shaders</b> Shaders are graphics filters used to render games in a specific style. Some of the most popular shaders allow you to render games with a faux-CRT effect, which can be especially useful for titles which were never meant to be played on such crisp displays (especially the 32-bit machines!). Do note, however, that shaders can be quite taxing on your graphics card.</li>
+	</ul>
+
+	<p>Anyway, you should now see something that looks a bit more like this (my Retroarch installation uses the "Twilight Zone" colour scheme, by the way):</p>
+
+	<img class="ctralign" src="../images/retroarch/003.png">
+
+	<p>It’s time to begin downloading some emulators for your library. If you go to the following path:</p>
+
+	<span class="codeblock">Main Menu > Online Updater > Core Downloader</span>
+
+	<p>You should now be presented with a list which looks something like this:</p>
+
+	<img class="ctralign" src="../images/retroarch/004.png">
+
+	<!-- NOTE BLOCK -->
+	<div class="noteblock"><p><b>Note:</b>If you’re having issues accessing the Core Downloader, you should ensure that it’s visible in the settings menu. You can check this by navigating to:</p>
+
+	<span class="codeblock">Settings > User Interface > Menu Item Visibility > Show ‘Core Downloader’</span>
+
+	<p>It should be set to “ON”.</p>
+
+	</div>
+	<!--END OF NOTE -->
+
+	<p>A great number of systems can be emulated using Retroarch, and many of them have more than one emulator (or “core”) available. You can install them by highlighting them and then pressing the “ok” button. If you’re feeling confused about which option to select for a particular system, my advice is to just download several and experiment with them to see which work best for you; by and large, most of them are very functional.</p>
+
+	<p>As far as recommendations, I’ve found the following cores to be extremely dependable:</p>
+	<ul>
+		<li><b>Playstation</b> I tend to use the Beetle PSX HW core for 3D games, due to its ability to upscale games beautifully (please note that this requires a somewhat decent graphics card). Otherwise, I rely on PCSX-Rearmed.</li>
+		<li><b>Dreamcast</b> Flycast is a fork of the once-popular Reicast emulator. It offers fantastic compatibility, as well as the ability to support keyboards and mice (useful for Phantasy Star Online).</li>
+		<li><b>Saturn</b> The Beetle Saturn core can put a significant amount of stress on your system, but seems to be the most accurate. Otherwise, Yabause often works very well for me.</li>
+		<li><b>Playstation Portable</b> PPSSPP works a charm, and even supports upscaling as well (again, if you have good enough graphics hardware).</li>
+		<li><b>Gamecube / Wii</b> While the Dolphin core’s performance doesn’t match that of the standalone emulator, it can still work very well on a high-spec gaming PC.</li>
+	</ul>
+	<p>While a few cores (such as Dolphin and PPSSPP) provide their own BIOS, others will require you to source a separate BIOS file. You can find information about which files are specifically required for each core by checking out <a href="https://docs.libretro.com/library/beetle_psx_hw/">the respective page on the libretro website</a>.</p>
+
+	<p>Using the information from the above page on the libretro site, you can then copy and paste the appropriate files to the necessary directory. An easy way to do this from the terminal (once you’ve unzipped the BIOS file), is to navigate to the folder housing your BIOS and type the following:</p>
+
+	<span class="codeblock">cp *.bin ~/.config/retroarch/system</span>
+
+	<p>This will copy all files with the extension “.bin” to the system folder in Retroarch (please note that certain emulators require the BIOS to be placed in a specific folder within the “system” directory. Again, this information can be found on each emulator’s designated page on the libretro site).</p>
+
+	<h3>Preparing Your Library</h3>
+
+	<p>Now that you’ve configured retroarch, it’s time to begin assembling your library. I’d recommend setting up a folder called “roms” and placing this in your home directory. To do this, we can just type the following in the terminal:</p>
+
+	<span class="codeblock">mkdir ~/roms</span>
+
+	<p>I also tend to create sub-directories within my main rom folder to house games from each separate system. For example:</p>
+
+
+	<p><span class="codeblock">mkdir ~/roms/PSX 	# For Playstation games</span></p>
+	<p><span class="codeblock">mkdir ~/roms/DC	# For Dreamcast games</span></p>
+	<p><span class="codeblock">mkdir ~/roms/Saturn	# For Saturn games</span></p>
+
+
+	<p>Once that’s done, copy any legally-obtained roms for these systems into the respective folder.</p>
+
+	<!--make this a NOTE block!-->
+	<p>One of the things that can feel slightly cumbersome in Retroarch is navigating to your rom folder every time you want to boot a game. An easy way to avoid having to do this is to set the rom folder as your start directory. You can arrange this by going to the following path:</p>
+	<!--END of NOTE block!-->
+
+	<span class="codeblock">Settings > Directory > File Browser</span>
+
+	<p>Then, navigate to the rom folder and select “&lt;Use This Directory&gt;”</p>
+
+	<img class="ctralign" src="../images/retroarch/002.png">
+
+	<h3>Playing Your Games</h3>
+
+	<p>That’s it! You’ve set up your emulators, prepared your library, and now you can get on with wasting the rest of your day playing your favourite retro games.</p>
+
+	<p>To launch any game, just select “Load Content” from the Main Menu. Once you select the desired rom file, you should be presented with a list of Suggested Cores. Select one which is appropriate for the system you're emulating, and the game should boot immediately.</p>
+
+	<div class="noteblock">
+	<p><b>Note:</b>To switch Retroarch to full-screen mode, navigate to:</p>
+
+	<span class="codeblock">Settings > Video > Fullscreen mode > Start in Fullscreen Mode</span>
+
+	<p>And set it to “ON”.</p>
+	</div>
+
+</div>
+
+</body>
+</html>
